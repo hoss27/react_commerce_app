@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./pages/home/home";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/shop";
 import Header from "./pages/header/header";
 import Authentification from "./components/authentification/authentification";
@@ -32,7 +32,7 @@ class App extends Component {
           );
         });
       }
-      setCurrentUser(userAuth );
+      setCurrentUser(userAuth);
     });
   }
 
@@ -41,21 +41,28 @@ class App extends Component {
   }
 
   render() {
+    console.log('hoss'+this.props.currentUser)
     return (
       <div>
         <Header/>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/authentification" component={Authentification} />
+          <Route exact path="/authentification" render={() => this.props.currentUser ?
+          (<Redirect to='/'/>) : (<Authentification/>)}/>
         </Switch>
       </div>
     );
   }
 }
 
+
+const mapStateToProps = ({user}) => ({
+  currentUser: user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
