@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import FormInput from "../../form-input/form-input";
+import FormInput from "../../../sharedui/form-input/form-input";
 import "./sign-in.scss";
-import CustomButton from "../../custom-botton/custom-button";
+import CustomButton from "../../../sharedui/custom-botton/custom-button";
 import { auth, signInWithGoogle } from "../../../firebase/firebase.utils";
 
 export default class SignIn extends Component {
