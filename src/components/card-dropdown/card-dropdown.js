@@ -2,6 +2,7 @@ import React from 'react'
 import CustomButton from '../../sharedui/custom-botton/custom-button'
 import {connect} from 'react-redux';
 import CartItem from '../cart-item/cart-item';
+import {selectCartItems} from '../../redux/cart/cart-selector';
 import './card-dropdown.scss';
 
 
@@ -17,8 +18,8 @@ const CardDropdown = ({cartItems}) => (
 )
 
 
-const mapStateToProps = ({cart:{cartItems}}) => ({
-  cartItems
+const mapStateToProps = (state) => ({
+  cartItems: selectCartItems(state)
 });
 
 export default connect(mapStateToProps)(CardDropdown);
