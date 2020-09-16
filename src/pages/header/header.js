@@ -9,6 +9,7 @@ import CardDropdown  from "../../components/card-dropdown/card-dropdown";
 import {cartHiddenSelector} from '../../redux/cart/cart-selector';
 import {setToggleHidden} from '../../redux/cart/CartActions';
 import {currentUserSelect} from '../../redux/user/UserSectors';
+import {createStructuredSelector} from 'reselect';
 
 const Header = ({ currentUser,hidden }) => {
 
@@ -40,8 +41,8 @@ const Header = ({ currentUser,hidden }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser : currentUserSelect(state),
-  hidden: cartHiddenSelector(state)
+const mapStateToProps = createStructuredSelector ({
+  currentUser : currentUserSelect,
+  hidden: cartHiddenSelector
 });
 export default connect(mapStateToProps)(Header);

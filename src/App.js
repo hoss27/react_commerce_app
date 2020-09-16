@@ -3,7 +3,9 @@ import "./App.css";
 import Home from "./pages/home/home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/shop";
+import {createStructuredSelector} from 'reselect';
 import Header from "./pages/header/header";
+import {currentUserSelect} from './redux/user/UserSectors';
 import Authentification from "./components/authentification/authentification";
 import {
   auth,
@@ -57,8 +59,8 @@ class App extends Component {
 }
 
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: currentUserSelect
 });
 
 const mapDispatchToProps = dispatch => ({
