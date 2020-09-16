@@ -4,6 +4,8 @@ import CollectionPreview from '../../components/collectionpreview/collectionprev
 import {connect} from 'react-redux';
 import Authentification from '../../components/authentification/authentification';
 import { Redirect } from 'react-router-dom';
+import {createStructuredSelector} from 'reselect'; 
+import {currentUserSelect} from '../../redux/user/UserSectors';
 
 class ShopPage extends Component {
 
@@ -27,8 +29,8 @@ class ShopPage extends Component {
     }
 }
 
-const mapStateToProps = ({user}) => ({
-    currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector ({
+    currentUser: currentUserSelect
 })
 
 export default connect(mapStateToProps)(ShopPage)

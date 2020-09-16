@@ -13,6 +13,7 @@ import {
 } from "../src/firebase/firebase.utils";
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/UserActions';
+import CheckoutPage from "./pages/checkout/checkout";
 
 class App extends Component {
   
@@ -50,6 +51,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route exact path="/authentification" render={() => this.props.currentUser ?
           (<Redirect to='/'/>) : (<Authentification/>)}/>
         </Switch>
