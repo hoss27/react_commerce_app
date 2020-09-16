@@ -6,11 +6,12 @@ import './cart-icon.scss';
 
 
 
-const CartIcon = ({setToggleHidden}) => {
+const CartIcon = ({setToggleHidden,quantity}) => {
+    console.log(quantity);
     return (
         <div className='cart-icon' onClick={setToggleHidden}>
             <ShoppingIcon className='shopping-icon'/>
-            <span className='item-count'>0</span>
+    <span className='item-count'>{quantity}</span>
         </div>
     )
 }
@@ -19,4 +20,9 @@ const CartIcon = ({setToggleHidden}) => {
 const mapDispatchToProps = dispatch => ({
     setToggleHidden: () => dispatch(setToggleHidden())
 });
-export default connect(null, mapDispatchToProps)(CartIcon);
+
+
+const mapStateToprops = ({cart:{cartItems}}) => ({
+    quantity : cartItems.length
+});
+export default connect(mapStateToprops, mapDispatchToProps)(CartIcon);
