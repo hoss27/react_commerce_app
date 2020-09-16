@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import CartIcon from "../../components/cart-icon/cart-icon";
 import CardDropdown  from "../../components/card-dropdown/card-dropdown";
 import {cartHiddenSelector} from '../../redux/cart/cart-selector';
-import {setToggleHidden} from '../../redux/cart/CartActions';
 import {currentUserSelect} from '../../redux/user/UserSectors';
 import {createStructuredSelector} from 'reselect';
 
