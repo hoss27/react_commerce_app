@@ -4,7 +4,7 @@ import CustomButton from "../../sharedui/custom-botton/custom-button";
 import {connect} from 'react-redux';
 import {addItem} from '../../redux/cart/CartActions';
 
-const CollectionItem = ({ item, addItem }) =>  {
+const CollectionItem = ({ item, dispatch }) =>  {
   
   const {imageUrl, name, price} = item;
 
@@ -15,14 +15,11 @@ const CollectionItem = ({ item, addItem }) =>  {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <CustomButton onClick={() => addItem(item)} inverted>ADD TO CART</CustomButton>
+      <CustomButton onClick={() => dispatch(addItem(item))} inverted>ADD TO CART</CustomButton>
     </div>
   );
 };
 
 
-const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
-});
 
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default connect(null)(CollectionItem);

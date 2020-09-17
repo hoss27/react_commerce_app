@@ -16,7 +16,7 @@ const CheckoutItem = ({ cartItem, dispatch }) => {
           <div className='value'>{quantity}</div>
           <div className="arrow" onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
       </span>
-      <span className="price">{price}</span>
+      <span className="price">${price}</span>
       <span
         className="remove-button"
         onClick={() => dispatch(clearItem(cartItem))}
