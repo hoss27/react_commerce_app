@@ -7,22 +7,21 @@ import { Redirect } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { currentUserSelect } from "../../redux/user/UserSectors";
 import { selectC } from "../../redux/shop/shopSelector";
+import  CollectionOverview  from "../../components/collection-overview/collection-overview";
+import {Route} from 'react-router-dom';
+import  CategoryShop  from "../../components/category-shop/category-shop";
 
-const ShopPage = ({ collections, currentUser }) => {
-  return currentUser ? (
+const ShopPage = ({ match }) => {
+  return(
     <div>
-      {collections.map(({ id, ...otherSectionsProps }) => (
-        <CollectionPreview key={id} {...otherSectionsProps} />
-      ))}
+      <Route exact path={`${match.path}`} component={CollectionOverview}/>
+      <Route path={`${match.path}/:categoryId`} component={CategoryShop}/>
     </div>
-  ) : (
-    <Redirect to="/authentification" />
-  );
-};
+  
+)};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: currentUserSelect,
-  collections: selectC
 });
 
 export default connect(mapStateToProps)(ShopPage);
